@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <math.h> 
 #include <sstream>  // for ostringstream
 #include <iomanip> // for setprecision
 
@@ -13,7 +14,7 @@ using namespace std;
 // Compute distance between two points
 
 double distanceBetween(Point p, Point q) {
-  return 99999.9; // @@@ STUB
+  return sqrt((pow(p.x-q.x,2))+(pow(p.y-q.y,2))); // @@@ STUB
   // HINTS: The distance formula is something you hopefully remember
   //   from H.S. algebra, but if not, Wikipedia is your friend.
   //   The sqrt function is available when you use #include <cmath>, 
@@ -34,6 +35,8 @@ double distanceBetween(Point p, Point q) {
 
 
 void initPoint(struct Point *p, double xVal, double yVal) {
+  (*p).x=xVal;
+  (*p).y=yVal;
   //return; //@@@ for a void function, the stub is just a bare return that does nothing
 }
 
@@ -80,8 +83,13 @@ bool boxesApproxEqual(Box b1, Box b2, double tolerance) {
   // and the definition in your utility.cpp file.
 
   // TODO: FILL THIS IN WITH APPROPRIATE CODE
-
-  return false; // STUB!  TODO: Delete this line and comment and replace with appropriate code
+  if(!(fabs(b1.ul.x - b2.ul.x)<tolerance && fabs(b1.ul.y - b2.ul.y)<tolerance)){
+    return false;
+  }
+  else if(!((fabs(b1.width-b2.width)<tolerance) && (fabs(b1.height-b2.height)<tolerance))){
+    return false;
+  }
+  return true; // STUB!  TODO: Delete this line and comment and replace with appropriate code
 }
 
 
@@ -96,11 +104,15 @@ bool boxesApproxEqual(Box b1, Box b2, double tolerance) {
 
 void initBox(struct Box *b, double ulx, double uly, double w, double h)
 {
-  return; // @@@ For a void function a "naked return" is a "do nothing" stub
+  (*b).ul.x=ulx;
+  (*b).ul.y=uly;
+  (*b).width=w;
+  (*b).height=h;
+   // @@@ For a void function a "naked return" is a "do nothing" stub
 }
 
 
 double areaOfBox(Box b) {
-  return -42.0;  /* stub---make sure all tests fail initially */
+  return (b.width*b.height);  /* stub---make sure all tests fail initially */
   // you can use b.width to access width, and b.height to access height
 }
