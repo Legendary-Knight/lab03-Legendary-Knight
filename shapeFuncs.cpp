@@ -51,8 +51,10 @@ string pointToString(Point p, int precision) {
 string boxToString(Box b, int precision) {
   
   // SAMPLE FORMAT (precision = 2): "ul=(3.4,-5),w=5,h=7"
-  
-  return "stub!"; // TODO: Delete this line and comment and replace with appropriate code
+  ostringstream oss;
+  oss << setprecision(precision); // set precision to 3 decimal places
+  oss << "ul=(" << b.ul.x << "," << b.ul.y << "),w="<< b.width <<",h="<<b.height;
+  return oss.str();
 }
  
 
@@ -84,7 +86,7 @@ bool boxesApproxEqual(Box b1, Box b2, double tolerance) {
 
   // TODO: FILL THIS IN WITH APPROPRIATE CODE
   if(!(fabs(b1.ul.x - b2.ul.x)<tolerance && fabs(b1.ul.y - b2.ul.y)<tolerance)){
-    return false;
+    return false; 
   }
   else if(!((fabs(b1.width-b2.width)<tolerance) && (fabs(b1.height-b2.height)<tolerance))){
     return false;
